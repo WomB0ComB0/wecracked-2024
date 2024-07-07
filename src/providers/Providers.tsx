@@ -5,7 +5,6 @@ import ToasterProvider from './ToasterProvider';
 import AuthProvider from './AuthProvider';
 
 const providers = [
-  [MongooseProvider, {}],
   [AuthProvider, {}],
   [ToasterProvider, {}],
 ]

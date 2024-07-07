@@ -9,10 +9,10 @@ const envSchema = z.object({
   GITHUB_SECRET: z.string(),
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
+  NODE_ENV: z.enum(["development", "production", "test"]),
   AZURE_SAS_TOKEN: z.string(),
   AZURE_STORAGE_ACCOUNT_NAME: z.string(),
   AZURE_STORAGE_CONTAINER_NAME: z.string(),
-  NODE_ENV: z.enum(["development", "production", "test"]),
   NEXT_PUBLIC_API_KEY: z.string(),
   API_URL: z.string().url(),
 });

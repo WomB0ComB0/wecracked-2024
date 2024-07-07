@@ -6,13 +6,14 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
 import toast from "react-hot-toast";
-
+import connect from "@/utils/db";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 const NextLoginPage = () => {
+
 	const router = useRouter();
 	const [error, setError] = useState("");
 	const { data: session, status: sessionStatus } = useSession();

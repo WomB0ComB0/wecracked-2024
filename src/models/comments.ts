@@ -1,4 +1,4 @@
-import { Schema, model, Types } from 'mongoose';
+import { Schema, model, models, Types } from 'mongoose';
 
 const commentsSchema = new Schema({
   comment: { type: String, required: true },
@@ -11,6 +11,6 @@ const commentsSchema = new Schema({
   toObject: { virtuals: true }
 });
 
-export const Comments = model('Comments', commentsSchema);
+const Comments = models.Comments || model('Comments', commentsSchema);
 
 export default Comments;

@@ -21,11 +21,11 @@ export const authOptions: any = {
       async authorize(credentials: any): Promise<NextAuthUser | null> {
         await connect();
         try {
-          const user = await User.findOne({ email: credentials.email }).lean(); // Convert to plain object
+          const user = await User.findOne({ email: credentials.email }).lean() as { password: string, _id: unknown, email: string, name: string | null } | null;
           if (user) {
             const isPasswordCorrect = await bcrypt.compare(
               credentials.password,
-              user.password as string
+              user.password
             );
             if (isPasswordCorrect) {
               return {

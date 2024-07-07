@@ -1,4 +1,4 @@
-import { Schema, model, Types } from 'mongoose';
+import { Schema, model, models, Types } from 'mongoose';
 
 const postSchema = new Schema({
   type: { type: String, enum: ['FEATURED', 'LATEST', 'RELATED'], default: 'LATEST' },
@@ -15,6 +15,6 @@ const postSchema = new Schema({
   toObject: { virtuals: true }
 });
 
-const Post = model('Post', postSchema);
+const Post = models.Post || model('Post', postSchema);
 
 export default Post;

@@ -1,4 +1,4 @@
-import { Schema, model, Types } from 'mongoose';
+import { Schema, model, models, Types } from 'mongoose';
 
 const accountSchema = new Schema({
   userId: { type: Types.ObjectId, ref: 'User', required: true },
@@ -20,6 +20,6 @@ const accountSchema = new Schema({
 
 accountSchema.index({ provider: 1, providerAccountId: 1 }, { unique: true });
 
-const Account = model('Account', accountSchema);
+const Account = models.Account || model('Account', accountSchema);
 
 export default Account;
