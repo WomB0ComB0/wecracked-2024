@@ -16,7 +16,7 @@
     "prettier": "prettier --write .",
     "lint": "yarn eslint && yarn prettier",
     "format": "next lint --fix && prettier '**/*.{json,yaml}' --write --ignore-path .gitignore",
-    "postbuild": "next-sitemap && yarn prisma generate",
+    "postbuild": "yarn prisma generate",
     "postinstall": "yarn prisma generate"
   },
   "lint-staged": {
