@@ -15,7 +15,8 @@ const accountSchema = new Schema({
 }, {
   timestamps: true,
   toJSON: { virtuals: true },
-  toObject: { virtuals: true }
+  toObject: { virtuals: true },
+  collection: 'blog'
 });
 
 accountSchema.index({ provider: 1, providerAccountId: 1 }, { unique: true });

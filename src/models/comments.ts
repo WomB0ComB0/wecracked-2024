@@ -8,7 +8,8 @@ const commentsSchema = new Schema({
 }, {
   timestamps: true,
   toJSON: { virtuals: true },
-  toObject: { virtuals: true }
+  toObject: { virtuals: true },
+  collection: 'blog'
 });
 
 const Comments = models.Comments || model('Comments', commentsSchema);

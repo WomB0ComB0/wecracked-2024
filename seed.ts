@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import User from '@/models/user';
 import Post from '@/models/posts';
-import {Comments} from '@/models/comments';
+import Comments from '@/models/comments';
 import Account from '@/models/account';
 import connect from '@/utils/db';
 

@@ -1,7 +1,6 @@
 import { Schema, model, models, Types } from 'mongoose';
 
 const postSchema = new Schema({
-  id: { type: String, required: true },
   type: { type: String, enum: ['FEATURED', 'LATEST', 'RELATED'], default: 'LATEST' },
   title: { type: String, required: true },
   description: { type: String, required: true },
@@ -13,7 +12,8 @@ const postSchema = new Schema({
 }, {
   timestamps: true,
   toJSON: { virtuals: true },
-  toObject: { virtuals: true }
+  toObject: { virtuals: true },
+  collection: 'blog'
 });
 
 const Post = models.Post || model('Post', postSchema);
