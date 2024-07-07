@@ -1,4 +1,5 @@
 'use client';
+import ErrorLayout from '@/layouts/ErrorLayout/ErrorLayout';
 
 import { useEffect } from 'react';
 
@@ -9,10 +10,10 @@ interface UnauthorizeStateProps {
 }
 
 const UnauthorizeState: React.FC<UnauthorizeStateProps> = ({ error }) => {
-	useEffect(() => {
-		// eslint-disable-next-line no-console
-		console.error(error);
-	}, [error]);
+  useEffect(() => {
+     // eslint-disable-next-line no-console
+    console.error(error);
+  }, [error]);
 
 	return (
 		<EmptyState
@@ -24,20 +25,10 @@ const UnauthorizeState: React.FC<UnauthorizeStateProps> = ({ error }) => {
 	);
 };
 
-export default UnauthorizeState;
+function ErrorPage() {
+  return <h1>There was an error, let me check on that</h1>;
+}
 
-// import ErrorLayout from '@/layouts/ErrorLayout/ErrorLayout';
+ErrorPage.getLayout = (page: any) => <ErrorLayout>{page}</ErrorLayout>;
 
-// function ErrorPage() {
-//   return <h1>There was an error, let me check on that</h1>;
-// }
-
-// ErrorPage.getLayout = (page: any) => <ErrorLayout>{page}</ErrorLayout>;
-
-// export const getStaticProps = () => ({
-//   props: {
-//     title: '🕵🏼 - error',
-//   },
-// });
-
-// export default ErrorPage;
+export default ErrorPage;
