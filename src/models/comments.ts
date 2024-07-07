@@ -12,3 +12,5 @@ const commentsSchema = new Schema({
 });
 
 const Comments = model('Comments', commentsSchema);
+
+export default Comments;
