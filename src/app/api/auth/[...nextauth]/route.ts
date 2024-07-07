@@ -6,6 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
 import User from "@/models/user";
 import connect from "@/utils/db";
+import env from '@/env';
 
 export const authOptions: any = {
   // Configure one or more authentication providers
@@ -37,12 +38,12 @@ export const authOptions: any = {
       },
     }),
     GithubProvider({
-      clientId: process.env.GITHUB_ID ?? "",
-      clientSecret: process.env.GITHUB_SECRET ?? "",
+      clientId: env.GITHUB_ID ?? "",
+      clientSecret: env.GITHUB_SECRET ?? "",
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID ?? "",
-      clientSecret: process.env.GOOGLE_SECRET ?? "",
+      clientId: env.GOOGLE_CLIENT_ID ?? "",
+      clientSecret: env.GOOGLE_CLIENT_SECRET ?? "",
     }),
     // ...add more providers here
   ],
