@@ -5,6 +5,7 @@ export const Slugify = (text: string) => {
 		.replace(/[^\w-]+/g, '');
 };
 
+export const isValidObjectId = (val: string): boolean => /^[0-9a-fA-F]{24}$/.test(val);
 
 export const ScrollIntoCenterView = (href: string) => {
 	const element = document.querySelector(href);

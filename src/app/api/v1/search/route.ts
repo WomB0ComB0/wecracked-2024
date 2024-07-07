@@ -1,10 +1,14 @@
-import { prisma } from "@/lib";
-import type { NextRequest, NextResponse } from "next/server";
+import connect from '@/utils/db';
+import Post from '@/models/posts';
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-export const GET = async (req: NextRequest, res: NextResponse) => {
+export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url);
   const query = searchParams.get("query");
-  const posts = await prisma.post.findMany({
+  await connect();
+  const posts = await Post.find({
     where: { title: { contains: query } },
   });
+  return NextResponse.json(posts);
 };

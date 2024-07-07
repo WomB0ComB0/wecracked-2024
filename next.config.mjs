@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  reactStrictMode: true,
+  experimental: {
+    instrumentationHook: true,
+    scrollRestoration: true,
+    newNextLinkBehavior: true,
+    images: {
+      allowFutureImage: true,
+    },
+  },
+};
 
-module.exports = nextConfig;
+export default nextConfig;

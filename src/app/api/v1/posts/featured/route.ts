@@ -1,9 +1,11 @@
-import { prisma } from '@/lib';
 import { type NextRequest, NextResponse } from 'next/server';
+import connect from '@/utils/db';
+import Post from '@/models/posts';
 
 export const GET = async (req: NextRequest, res: NextResponse) => {
 	try {
-		const posts = await prisma.post.findMany({
+		await connect();
+		const posts = await Post.find({
 			where: {
 				type: "FEATURED",
 			},

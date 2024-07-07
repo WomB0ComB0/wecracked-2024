@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { Post, Comments } from "@/schema/posts";
+import Post from "@/schema/posts";
+import Comments from "@/schema/comments";
 
 export function createAPIClient() {
   async function _fetch<T extends z.ZodTypeAny>(

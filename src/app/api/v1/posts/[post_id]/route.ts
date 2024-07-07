@@ -1,8 +1,9 @@
-import { prisma } from '@/lib';
 import { NextResponse } from 'next/server';
+import connect from '@/utils/db';
+import Post from '@/models/posts';
+
 export const GET = async ({ params }: { params: { post_id: string } }) => {
-	const post = await prisma.post.findUnique({
-		where: { id: params.post_id },
-	});
-	return NextResponse.json(post);
+  await connect();
+  const post = await Post.findById(params.post_id);
+  return NextResponse.json(post);
 };

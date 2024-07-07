@@ -1,25 +1,21 @@
 import { z } from "zod";
+import { isValidObjectId } from "@/utils";
 
 const PostType = z.enum(["FEATURED", "LATEST", "RELATED"]);
 
-const Comments = z.object({
-  id: z.string().optional(), 
-  comment: z.string(),
-  createdAt: z.date().optional(),
-  updatedAt: z.date().optional(),
-  postId: z.string(),
-});
-
-const Post = z.object({
-  id: z.string().optional(), 
+const PostSchema = z.object({
   type: PostType.default("LATEST"),
   title: z.string(),
   description: z.string(),
   image: z.string(),
-  createdAt: z.date().optional(),
-  updatedAt: z.date().optional(),
-  userId: z.string(),
-  comments: z.array(Comments).optional(),
+  createdAt: z.date().default(() => new Date()),
+  updatedAt: z.date().default(() => new Date()),
+  userId: z.string().refine((val) => isValidObjectId(val), {
+    message: "Invalid ObjectId",
+  }),
+  comments: z.array(z.string().refine((val) => isValidObjectId(val), {
+    message: "Invalid ObjectId",
+  })).optional(),
 });
 
-export { Post, Comments, PostType };
+export default PostSchema;

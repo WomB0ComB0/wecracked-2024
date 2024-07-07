@@ -1,8 +1,10 @@
-import { prisma } from '@/lib';
+import connect from '@/utils/db';
+import Post from '@/models/posts';
 import type { NextRequest, NextResponse } from 'next/server';
 
 export const GET = async (req: NextRequest, res: NextResponse) => {
-	const posts = await prisma.post.findMany({
+	await connect();
+	const posts = await Post.find({
 		orderBy: { createdAt: 'desc' },
 	});
 };
