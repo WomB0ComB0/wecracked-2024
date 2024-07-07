@@ -13,6 +13,7 @@ const AZURE_STORAGE_ACCOUNT_NAME = getEnvSafely('AZURE_STORAGE_ACCOUNT_NAME');
 const AZURE_STORAGE_CONTAINER_NAME = getEnvSafely('AZURE_STORAGE_CONTAINER_NAME');
 const NODE_ENV = getEnvSafely('NODE_ENV');
 const NEXT_PUBLIC_API_KEY = getEnvSafely('NEXT_PUBLIC_API_KEY');
+const API_URL = getEnvSafely('API_URL');
 
 const env = {
 	MONGODB_URI,
@@ -25,6 +26,7 @@ const env = {
 	AZURE_STORAGE_CONTAINER_NAME,
 	NODE_ENV,
 	NEXT_PUBLIC_API_KEY,
+	API_URL,
 };
 
 export default env;

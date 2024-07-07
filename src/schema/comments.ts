@@ -10,4 +10,4 @@ const CommentsSchema = z.object({
   }),
 });
 
-export default CommentsSchema;
+export { CommentsSchema };

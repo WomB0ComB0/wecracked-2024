@@ -11,6 +11,7 @@ const envSchema = z.object({
   AZURE_STORAGE_CONTAINER_NAME: z.string(),
   NODE_ENV: z.enum(["development", "production", "test"]),
   NEXT_PUBLIC_API_KEY: z.string(),
+  API_URL: z.string().url(),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);

@@ -1,6 +1,6 @@
 import { z } from "zod";
-import Post from "@/schema/posts";
-import Comments from "@/schema/comments";
+import { PostSchema } from "@/schema/posts";
+import { CommentsSchema } from "@/schema/comments";
 
 export function createAPIClient() {
   async function _fetch<T extends z.ZodTypeAny>(
@@ -27,13 +27,13 @@ export function createAPIClient() {
 
   return {
     posts: {
-      get: (slug: string) => _fetch(`/api/posts/${slug}`, { method: "GET" }, Post),
-      getAll: () => _fetch('/api/posts', { method: 'GET' }, z.array(Post)),
-      getFeatured: () => _fetch('/api/v1/posts/featured', { method: 'GET' }, z.array(Post)),
-      getLatest: () => _fetch('/api/v1/posts/latest', { method: 'GET' }, z.array(Post)),
-      search: (query: string) => _fetch(`/api/v1/search?query=${query}`, { method: 'GET' }, z.array(Post)),
-      getRelated: (postId: string) => _fetch(`/api/v1/posts/related/${postId}`, { method: 'GET' }, z.array(Post)),
-      getComments: (postId: string) => _fetch(`/api/v1/posts/comments/${postId}`, { method: 'GET' }, z.array(Comments)),
+      get: (slug: string) => _fetch(`/api/posts/${slug}`, { method: "GET" }, PostSchema),
+      getAll: () => _fetch('/api/posts', { method: 'GET' }, z.array(PostSchema)),
+      getFeatured: () => _fetch('/api/v1/posts/featured', { method: 'GET' }, z.array(PostSchema)),
+      getLatest: () => _fetch('/api/v1/posts/latest', { method: 'GET' }, z.array(PostSchema)),
+      search: (query: string) => _fetch(`/api/v1/search?query=${query}`, { method: 'GET' }, z.array(PostSchema)),
+      getRelated: (postId: string) => _fetch(`/api/v1/posts/related/${postId}`, { method: 'GET' }, z.array(PostSchema)),
+      getComments: (postId: string) => _fetch(`/api/v1/posts/comments/${postId}`, { method: 'GET' }, z.array(CommentsSchema)),
     }
   };
 }

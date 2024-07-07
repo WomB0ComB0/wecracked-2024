@@ -18,4 +18,4 @@ const PostSchema = z.object({
   })).optional(),
 });
 
-export default PostSchema;
+export { PostSchema };
