@@ -10,14 +10,60 @@ datasource db {
   url      = env("MONGODB_URI")
 }
 
+model Account {
+  id                String  @id @default(cuid()) @map("_id") @db.ObjectId
+  userId            String @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
 model User {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String?
   email          String?   @unique
   emailVerified  DateTime?
   image          String?
-  password       String?
   isAdmin        Boolean  @default(false)
   createdAt      DateTime  @default(now())
+  password       String?
   updatedAt      DateTime  @updatedAt
+  posts          Post[]  
+  accounts        Account[]
+}
+
+model Post {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  type           PostType  @default(LATEST)
+  title          String
+  description    String
+  image          String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  user          User      @relation(fields: [userId], references: [id])
+  userId        String @db.ObjectId
+  comments       Comments[]
+}
+
+model Comments {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  comment        String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  post          Post      @relation(fields: [postId], references: [id])
+  postId        String @db.ObjectId
+}
+
+enum PostType {
+  FEATURED
+  LATEST
+  RELATED
 }

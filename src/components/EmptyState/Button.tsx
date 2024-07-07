@@ -3,31 +3,31 @@
 import type { IconType } from 'react-icons';
 
 interface ButtonProps {
-  label: string;
-  // eslint-disable-next-line no-unused-vars
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  disabled?: boolean;
-  outline?: boolean;
-  small?: boolean;
-  icon?: IconType;
-  isLoading?: boolean;
+	label: string;
+	// eslint-disable-next-line no-unused-vars
+	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+	disabled?: boolean;
+	outline?: boolean;
+	small?: boolean;
+	icon?: IconType;
+	isLoading?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
-  label,
-  onClick,
-  disabled,
-  outline,
-  small,
-  icon: Icon,
-  isLoading,
+	label,
+	onClick,
+	disabled,
+	outline,
+	small,
+	icon: Icon,
+	isLoading,
 }) => {
-  return (
-    <button
-      type="button"
-      disabled={disabled}
-      onClick={onClick}
-      className={`
+	return (
+		<button
+			type="button"
+			disabled={disabled}
+			onClick={onClick}
+			className={`
         relative
         disabled:opacity-70
         disabled:cursor-not-allowed
@@ -43,20 +43,20 @@ const Button: React.FC<ButtonProps> = ({
         ${small ? 'font-light' : 'font-semibold'}
         ${small ? 'border-[1px]' : 'border-2'}
       `}
-    >
-      {Icon && (
-        <Icon
-          size={24}
-          className="
+		>
+			{Icon && (
+				<Icon
+					size={24}
+					className="
             absolute
             left-4
             top-3
           "
-        />
-      )}
-      {isLoading ? 'Lading..' : label}
-    </button>
-  );
+				/>
+			)}
+			{isLoading ? 'Lading..' : label}
+		</button>
+	);
 };
 
 export default Button;

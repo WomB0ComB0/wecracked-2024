@@ -5,4 +5,4 @@
 // context/UserContext.tsx -> saves information about the current user
 // hooks/useUser.tsx -> provides an abstraction of UserContext to get the current user
 
-export {};
+export type {};
