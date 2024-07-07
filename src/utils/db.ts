@@ -22,14 +22,8 @@ const connect = async () => {
   if (!cached.promise) {
     const opts: {
       bufferCommands: boolean;
-      bufferMaxEntries: number;
-      useNewUrlParser: boolean;
-      useUnifiedTopology: boolean;
     } = {
       bufferCommands: false,
-      bufferMaxEntries: 0,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
     };
     cached.promise = mongoose.connect(MONGO_URI, opts).then((mongoose) => {
       console.log("Mongo Connection successfully established.");
