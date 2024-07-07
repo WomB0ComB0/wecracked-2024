@@ -1,6 +1,7 @@
 import { Schema, model, models, Types } from 'mongoose';
 
 const postSchema = new Schema({
+  id: { type: String, required: true },
   type: { type: String, enum: ['FEATURED', 'LATEST', 'RELATED'], default: 'LATEST' },
   title: { type: String, required: true },
   description: { type: String, required: true },

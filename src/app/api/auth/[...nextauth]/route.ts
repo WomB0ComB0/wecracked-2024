@@ -31,8 +31,7 @@ export const authOptions: any = {
               return {
                 id: (user._id as unknown as string).toString(),
                 email: user.email as string,
-                name: user.name as string | null, // Ensure name is included
-                // Add other fields if necessary
+                name: user.name as string | null,
               };
             }
           }
@@ -50,7 +49,6 @@ export const authOptions: any = {
       clientId: env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: env.GOOGLE_CLIENT_SECRET ?? "",
     }),
-    // ...add more providers here
   ],
   callbacks: {
     async signIn({ user, account }: { user: NextAuthUser; account: Account }) {
@@ -97,6 +95,13 @@ export const authOptions: any = {
 
     },
   },
+    secret: env.NEXTAUTH_SECRET,
+    session: {
+      jwt: true,
+    },
+    jwt: {
+      secret: env.NEXTAUTH_SECRET,
+    },
 };
 
 export const handler = NextAuth(authOptions);

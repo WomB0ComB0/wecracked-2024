@@ -4,6 +4,9 @@ import { isValidObjectId } from "@/utils";
 const PostType = z.enum(["FEATURED", "LATEST", "RELATED"]);
 
 const PostSchema = z.object({
+  id: z.string().refine((val) => isValidObjectId(val), {
+    message: "Invalid ObjectId",
+  }),
   type: PostType.default("LATEST"),
   title: z.string(),
   description: z.string(),

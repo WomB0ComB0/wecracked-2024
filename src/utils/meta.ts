@@ -5,7 +5,7 @@ export function constructMetadata({
 	title = app.name,
 	description = app.description,
 	image = '/opengraph-image.png',
-	icons = '/assets/svgs/logo.svg',
+	icons = '/svgs/logo.svg',
 	noIndex = false,
 }: {
 	title?: string;

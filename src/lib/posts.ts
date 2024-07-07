@@ -25,6 +25,7 @@ export function createAPIClient() {
     return result.data;
   }
 
+
   return {
     posts: {
       get: (slug: string) => _fetch(`/api/posts/${slug}`, { method: "GET" }, PostSchema),
@@ -34,6 +35,12 @@ export function createAPIClient() {
       search: (query: string) => _fetch(`/api/v1/search?query=${query}`, { method: 'GET' }, z.array(PostSchema)),
       getRelated: (postId: string) => _fetch(`/api/v1/posts/related/${postId}`, { method: 'GET' }, z.array(PostSchema)),
       getComments: (postId: string) => _fetch(`/api/v1/posts/comments/${postId}`, { method: 'GET' }, z.array(CommentsSchema)),
+
+      post: {
+        create: (post: z.infer<typeof PostSchema>) => _fetch('/api/v1/posts', { method: 'POST' }, PostSchema),
+        update: (post: z.infer<typeof PostSchema>) => _fetch(`/api/v1/posts/${post.id}`, { method: 'PUT', body: JSON.stringify(post) }, PostSchema),
+        delete: (postId: string) => _fetch(`/api/v1/posts/${postId}`, { method: 'DELETE' }, z.object({ success: z.boolean() })),
+      }
     }
   };
 }

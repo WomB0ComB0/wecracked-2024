@@ -2,9 +2,11 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -86,7 +88,7 @@ const RegisterPage = () => {
     sessionStatus !== "authenticated" && (
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="flex justify-center flex-col items-center">
-          <Image src="/logo 1.png" alt="star logo" width={50} height={50} />
+          <Image src="/svgs/logo.png" alt="logo" width={50} height={50} />
           <h2 className="mt-6 text-center text-2xl leading-9 tracking-tight text-gray-900">
             Sign up on our website
           </h2>
@@ -166,6 +168,35 @@ const RegisterPage = () => {
                 </p>
               </div>
             </form>
+
+            <div className="relative mt-10">
+              <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                <div className="w-full border-t border-gray-200" />
+              </div>
+              <div className="relative flex justify-center text-sm font-medium leading-6">
+                <span className="bg-white px-6 text-gray-900">Or continue with</span>
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              <Button
+                variant="outline"
+                onClick={() => signIn("google")}
+                className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-1.5 text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                <FcGoogle />
+                <span className="text-sm font-semibold leading-6">Google</span>
+              </Button>
+
+              <Button
+                variant="outline"
+                onClick={() => signIn("github")}
+                className="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]"
+              >
+                <FaGithub />
+                <span className="text-sm font-semibold leading-6">GitHub</span>
+              </Button>
+            </div>
           </Card>
         </div>
       </div>

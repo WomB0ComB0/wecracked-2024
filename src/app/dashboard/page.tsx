@@ -1,16 +1,15 @@
-'use client';
+import Sidebar from "./sidebar";
+import Header from "./header";
+import MainContent from "./body";
 
-import Head from 'next/head';
-
-const page = () => {
-	return (
-		<div>
-			<Head>
-				<title>Dashboard</title>
-			</Head>
-			<h1>Dashboard</h1>
-		</div>
-	);
-};
-
-export default page;
+export default function Dashboard() {
+  return (
+    <div className="flex min-h-screen w-full flex-col bg-muted/40">
+      <Sidebar />
+      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+        <Header />
+        <MainContent />
+      </div>
+    </div>
+  );
+}
