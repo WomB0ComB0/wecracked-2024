@@ -1,5 +1,5 @@
-import ErrorLayout from '@/layouts/ErrorLayout/ErrorLayout';
 'use client';
+import ErrorLayout from '@/layouts/ErrorLayout/ErrorLayout';
 
 import { useEffect } from 'react';
 
