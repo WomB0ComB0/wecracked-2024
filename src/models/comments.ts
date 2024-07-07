@@ -11,4 +11,4 @@ const commentsSchema = new Schema({
   toObject: { virtuals: true }
 });
 
-const Comments = model('Comments', commentsSchema);
+export const Comments = model('Comments', commentsSchema);

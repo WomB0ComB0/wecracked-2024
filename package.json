@@ -14,8 +14,6 @@
     "analyze": "ANALYZE=true bun run next build",
     "lint": "bun run eslint && bun run prettier",
     "format": "bun run next lint --fix && bun run prettier '**/*.{json,yaml}' --write --ignore-path .gitignore",
-    "postbuild": "bun run next-sitemap && bun run prisma generate",
-    "postinstall": "bun run prisma generate",
     "lint:bun": "bunx biome check --apply ./ || true && bunx stylelint src/styles/**/*.{css,scss,sass} --fix"
   },
   "dependencies": {
@@ -23,7 +21,6 @@
     "@ducanh2912/next-pwa": "^10.2.7",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@next/bundle-analyzer": "^14.2.4",
-    "@prisma/client": "^5.16.1",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@svgr/webpack": "^8.1.0",
