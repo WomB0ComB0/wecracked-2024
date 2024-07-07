@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
+import { env } from "@/env"
 
-
-const MONGO_URI = process.env.MONGODB_URI!;
+const MONGO_URI = env.MONGODB_URI;
 console.log(MONGO_URI)
 if (!MONGO_URI) {
   throw new Error("Mongo URI is not set.");
