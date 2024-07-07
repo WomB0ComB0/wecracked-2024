@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
-import { Account, User as AuthUser } from "next-auth";
+import NextAuth, { User as NextAuthUser } from "next-auth";
+import { Account } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
@@ -18,7 +18,7 @@ export const authOptions: any = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any) {
+      async authorize(credentials: any): Promise<NextAuthUser | null> {
         await connect();
         try {
           const user = await User.findOne({ email: credentials.email }).lean(); // Convert to plain object
@@ -28,7 +28,12 @@ export const authOptions: any = {
               user.password as string
             );
             if (isPasswordCorrect) {
-              return new User(user); // Ensure the returned object is an instance of User
+              return {
+                id: (user._id as unknown as string).toString(),
+                email: user.email as string,
+                name: user.name as string | null, // Ensure name is included
+                // Add other fields if necessary
+              };
             }
           }
           return null;
@@ -48,7 +53,7 @@ export const authOptions: any = {
     // ...add more providers here
   ],
   callbacks: {
-    async signIn({ user, account }: { user: AuthUser; account: Account }) {
+    async signIn({ user, account }: { user: NextAuthUser; account: Account }) {
       if (account?.provider == "credentials") {
         return true;
       }

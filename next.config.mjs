@@ -4,10 +4,7 @@ const nextConfig = {
   experimental: {
     instrumentationHook: true,
     scrollRestoration: true,
-    newNextLinkBehavior: true,
-    images: {
-      allowFutureImage: true,
-    },
+
   },
 };
 

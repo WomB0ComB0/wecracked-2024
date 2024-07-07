@@ -1,7 +1,10 @@
 import { z } from "zod";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load environment variables from .env file
 
 const envSchema = z.object({
-  MONGODB_URI: z.string(),
+  MONGODB_URI: z.string().url(),
   GITHUB_ID: z.string(),
   GITHUB_SECRET: z.string(),
   GOOGLE_CLIENT_ID: z.string(),
@@ -18,7 +21,8 @@ const parsedEnv = envSchema.safeParse(process.env);
 
 if (!parsedEnv.success) {
   console.error("Invalid environment variables:", parsedEnv.error.format());
-  throw new Error("Invalid environment variables");
+  console.log("Current environment variables:", process.env); // Log current environment variables
+  throw new Error(`Invalid environment variables: ${JSON.stringify(parsedEnv.error.format(), null, 2)}`);
 }
 
 export const env = parsedEnv.data;
