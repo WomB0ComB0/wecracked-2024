@@ -31,10 +31,4 @@ function ErrorPage() {
 
 ErrorPage.getLayout = (page: any) => <ErrorLayout>{page}</ErrorLayout>;
 
-export const getStaticProps = () => ({
-  props: {
-    title: '🕵🏼 - error',
-  },
-});
-
 export default ErrorPage;
